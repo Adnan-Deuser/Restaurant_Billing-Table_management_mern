@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import BottomNav from "../components/shared/BottomNav"
 import BackButton from '../components/shared/BackButton'
 import TableCard from '../components/tables/TableCard'
+import { tables } from '../constants'
 
 const Tables = () => {
   const [status,setStatus]= useState("all")
@@ -28,10 +29,13 @@ const Tables = () => {
           </button>
         </div>
       </div>
-      <div className='flex-1 overflow-y-auto scrollbar-hide px-10 pb-32'>
+      <div className='flex-1 overflow-y-auto scrollbar-hide px-10 pb-32 h-[calc(100vh-9rem)]'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center'>
-        <TableCard />
-
+          {
+          tables.map((table)=>(
+              <TableCard key={table.id} name={table.name} status={table.status} initials={table.initial}/>
+          ))
+          }
       </div>
     </div>
       <BottomNav />
