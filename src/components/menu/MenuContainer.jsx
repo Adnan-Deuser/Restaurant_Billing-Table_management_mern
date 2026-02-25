@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { menus } from '../../constants'
 import { GrRadialSelected } from 'react-icons/gr'
 import { getBgColor } from "../../utils/index"
+import { FaShoppingCart } from 'react-icons/fa'
 
 const MenuContainer = () => {
 
@@ -68,6 +69,7 @@ const MenuContainer = () => {
                                     <h1 className='text-[#f5f5f5] text-lg font-semibold'>
                                         {menu.name}
                                     </h1>
+                                    <button className='bg-[#2e4a40] text-[#02ca3a] p-2 rounded-lg'><FaShoppingCart size={20}/> </button>
                                 </div>
 
                                 <p className='text-[#f5f5f5] text-lg font-semibold'>
