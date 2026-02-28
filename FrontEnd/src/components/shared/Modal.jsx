@@ -11,10 +11,8 @@ const Modal = ({ title, onClose, isOpen, children }) => {
                 border border-emerald-500/20
                 transform transition-all duration-300 scale-100">
 
-                {/* Top Accent Glow Bar */}
                 <div className="h-1 w-full bg-gradient-to-r from-emerald-400 via-green-500 to-teal-400" />
 
-                {/* Header */}
                 <div className="flex justify-between items-center px-7 py-6">
                     <h2 className="text-2xl font-bold text-white tracking-wide">
                         {title}
@@ -32,12 +30,10 @@ const Modal = ({ title, onClose, isOpen, children }) => {
                     </button>
                 </div>
 
-                {/* Body */}
                 <div className="px-7 pb-8 text-gray-300">
                     {children}
                 </div>
 
-                {/* Subtle Outer Glow */}
                 <div className="absolute -inset-1 rounded-3xl 
                     bg-gradient-to-r from-emerald-500/10 to-teal-500/10
                     blur-xl opacity-40 -z-10" />
