@@ -8,8 +8,11 @@ import { FaNotesMedical } from 'react-icons/fa6'
 import CustomerInfo from '../components/menu/CustomerInfo'
 import CartDetails from '../components/menu/CartDetails'
 import Bill from '../components/menu/Bill'
+import { useSelector } from 'react-redux'
 
 const Menu = () => {
+
+  const customerData = useSelector((state) => state.customer)
   return (
     <section className='bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3'>
       <div className="flex-[3] bg-slate-800">
@@ -23,15 +26,15 @@ const Menu = () => {
           <div className="flex items-center gap-4 cursor-pointer">
               <MdRestaurantMenu className="text-[#f5f5f5] text-4xl" />
               <div className="flex flex-col items-start">
-                  <h1 className="text-md text-white font-semibold">Customer Name</h1>
-                  <p className="text-xs text-white font-medium">Table No.2</p>
+                  <h1 className="text-md text-white font-semibold">{customerData.customerName || "Customer Name"}</h1>
+                  <p className="text-xs text-white font-medium">{customerData.tableNo || "N/A"}</p>
               </div>
           </div>
         </div>
       </div>
       <MenuContainer />
      </div>
-      <div className="flex-[1] bg-[#1a1a1a] mt-4 mr-3 h-[580px] rounded-lg pt-2">
+      <div className="flex-[1] bg-[#1a1a1a] mt-4 mr-3 h-[630px] rounded-lg pt-2 overflow-y-auto no-scrollbar">
         <CustomerInfo />
         <hr className='border-[#2a2a2a] border-t-2' />
         <CartDetails />

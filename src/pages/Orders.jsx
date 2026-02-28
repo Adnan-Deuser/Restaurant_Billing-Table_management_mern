@@ -7,38 +7,72 @@ import { useState } from "react"
 const Orders = () => {
   const [status, setStatus] = useState("all");
   return (
-    <section className='bg-[#1f1f1f] h-[calc(100vh-4.5rem)] overflow-hidden'>
+    <section className='bg-[#1f1f1f] h-[calc(99vh-4.5rem)] overflow-hidden'>
       
-      <div className='flex items-center justify-between px-8 py-4'>
-        <div className='flex items-center gap-2'>
-          <BackButton />
-          <h1 className='text-[#f5f5f5] text-xl font-bold tracking-wide'>Orders</h1>
-        </div>
+<div className='flex items-center justify-between px-8 py-5'>
 
-        <div className='flex items-center gap-2'>
-          <button onClick={()=> setStatus("all")} 
-            className={`text-[#ababab] text-base rounded-lg ${status === "all" && "bg-[#383838] px-5 py-1.5"} px-4 py-1.5 font-semibold`}>
-            All
-          </button>
+  <div className='flex items-center gap-3'>
+    <BackButton />
+    <h1 className='text-2xl font-bold text-white tracking-wide'>
+      Orders
+    </h1>
+  </div>
 
-          <button onClick={()=> setStatus("progress")} 
-            className={`text-[#ababab] text-base rounded-lg ${status === "progress" && "bg-[#383838] px-5 py-1.5"} px-4 py-1.5 font-semibold`}>
-            In Progress
-          </button>
+  <div className='flex items-center gap-3 bg-[#232323]/80 backdrop-blur-md 
+                  px-3 py-2 rounded-2xl border border-[#2a2a2a] shadow-lg'>
 
-          <button onClick={()=> setStatus("ready")} 
-            className={`text-[#ababab] text-base rounded-lg ${status === "ready" && "bg-[#383838] px-5 py-1.5"} px-4 py-1.5 font-semibold`}>
-            Ready
-          </button>
+    <button
+      onClick={() => setStatus("all")}
+      className={`relative px-5 py-2 rounded-xl text-sm font-semibold 
+        transition-all duration-300
+        ${status === "all"
+          ? "bg-gradient-to-r from-[#02ca3a] to-[#00ff88] text-black shadow-md scale-105"
+          : "text-[#ababab] hover:text-white hover:bg-[#2a2a2a]"
+        }`}
+    >
+      All
+    </button>
 
-          <button onClick={()=> setStatus("completed")} 
-            className={`text-[#ababab] text-base rounded-lg ${status === "completed" && "bg-[#383838] px-5 py-1.5"} px-4 py-1.5 font-semibold`}>
-            Completed
-          </button>
-        </div>
-      </div>
+    <button
+      onClick={() => setStatus("progress")}
+      className={`relative px-5 py-2 rounded-xl text-sm font-semibold 
+        transition-all duration-300
+        ${status === "progress"
+          ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-md scale-105"
+          : "text-[#ababab] hover:text-white hover:bg-[#2a2a2a]"
+        }`}
+    >
+      In Progress
+    </button>
 
-      <div className='flex flex-wrap items-center justify-center gap-6 px-8 py-2 overflow-y-scroll h-[calc(100vh-9rem)] no-scrollbar pb-28'>
+    <button
+      onClick={() => setStatus("ready")}
+      className={`relative px-5 py-2 rounded-xl text-sm font-semibold 
+        transition-all duration-300
+        ${status === "ready"
+          ? "bg-gradient-to-r from-blue-400 to-cyan-400 text-black shadow-md scale-105"
+          : "text-[#ababab] hover:text-white hover:bg-[#2a2a2a]"
+        }`}
+    >
+      Ready
+    </button>
+
+    <button
+      onClick={() => setStatus("completed")}
+      className={`relative px-5 py-2 rounded-xl text-sm font-semibold 
+        transition-all duration-300
+        ${status === "completed"
+          ? "bg-gradient-to-r from-purple-400 to-pink-400 text-black shadow-md scale-105"
+          : "text-[#ababab] hover:text-white hover:bg-[#2a2a2a]"
+        }`}
+    >
+      Completed
+    </button>
+
+  </div>
+</div>
+
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-10 py-2 overflow-y-scroll h-[calc(100vh-9rem)] no-scrollbar pb-28'>
         <OrderCard />
         <OrderCard />
         <OrderCard />

@@ -18,7 +18,7 @@ const Home = () => {
         </div>
         <RecentOrders />
       </div>
-      <div className="flex-[2]">u
+      <div className="flex-[1.5]">
         <PopularDishes />
       </div>
       <BottomNav />

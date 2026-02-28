@@ -1,36 +1,39 @@
 import React from 'react'
-import { FaSearch, FaUserCircle,FaBell } from 'react-icons/fa'
+import { FaSearch, FaUserCircle, FaBell } from 'react-icons/fa'
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center py-2 px-4 bg-[#1a1a1a]">
-        <div className="flex items-center gap-2">
-            <img src='src/assets/logo.png' className="h-8 w-8 rounded-lg" alt="Hotel Logo" />
-            <h1 className="text-lg font-semibold text-[#f5f5f5]">Hotel</h1>
-        </div>
+    <header className="flex justify-between items-center py-3 px-6
+                   bg-gradient-to-br from-[#031107] via-[#042510] to-[#05391a]
+                   backdrop-blur-md border-b border-[#111] shadow-lg">
 
-        <div className="flex items-center gap-4 bg-[#1f1f1f] rounded-[15px] px-5 py-2 w-[500px]">
-            <FaSearch className="text-[#f5f5f5]"/>
-            <input 
-                type="text"
-                placeholder='Search'
-                className='bg-[#1f1f1f] text-[#f5f5f5] outline-none'
-            />
-        </div>
+      <div className="flex items-center gap-3">
+        <img src='src/assets/logo.png' className="h-10 w-10 rounded-xl shadow-md" alt="Hotel Logo" />
+        <h1 className="text-xl font-bold text-emerald-400 drop-shadow-md">Hotel</h1>
+      </div>
 
+      <div className="flex items-center gap-3 bg-[#1f1f1f]/90 backdrop-blur-sm rounded-2xl px-5 py-2 shadow-md w-[480px] transition-all hover:scale-105">
+        <FaSearch className="text-white text-md" />
+        <input 
+          type="text"
+          placeholder='Search Your Desires'
+          className='bg-transparent text-[#f5f5f5] placeholder:text-neutral-400 outline-none w-full'
+        />
+      </div>
 
-        <div className="flex items-center gap-4">
-        <div className="bg-[1f1f1f] rounded-[15px] p-3 cursor-pointer">
-            <FaBell className="text-[#f5f5f5] text-2xl" />
+      <div className="flex items-center gap-6">
+        <div className="bg-[#111111]/80 backdrop-blur-sm rounded-xl p-3 cursor-pointer shadow-md hover:scale-110 transition-transform">
+          <FaBell className="text-[#f5f5f5] text-2xl drop-shadow-md" />
         </div>
         <div className="flex items-center gap-4 cursor-pointer">
-            <FaUserCircle className="text-[#f5f5f5] text-4xl" />
-            <div className="flex flex-col items-start">
-                <h1 className="text-md text-[#f5f5f5]">Adnan Ashrafali</h1>
-                <p className="text-xs text-[#ababab] font-medium">Admin</p>
-            </div>
+          <FaUserCircle className="text-[#f5f5f5] text-4xl drop-shadow-md" />
+          <div className="flex flex-col items-start">
+            <h1 className="text-md text-emerald-400 font-semibold drop-shadow-md">Harry Pothan</h1>
+            <p className="text-xs text-gray-500 font-medium">Admin</p>
+          </div>
         </div>
-        </div>
+      </div>
+
     </header>
   );
 };
