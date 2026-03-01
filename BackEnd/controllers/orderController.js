@@ -1,6 +1,7 @@
 
 const createHttpError = require("http-errors");
-const Order = require("../model/orderModel")
+const Order = require("../model/orderModel");
+const { default: mongoose } = require("mongoose");
 
 const addOrder = async (req, res, next)=>{
     try {
@@ -14,7 +15,15 @@ const addOrder = async (req, res, next)=>{
 const getOrderById = async (req, res, next)=>{
 
     try {
-        const order = await Order.findById(req.params.id);
+
+        const { id } = req.params;
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            const error = createHttpError(404, "Invalid ID");
+            return next(error);
+        }
+
+        const order = await Order.findById(id);
         if(!order){
             const error = createHttpError(404, "Order not Found");
             return next(error);
@@ -37,7 +46,13 @@ const getOrders = async (req, res, next)=>{
 const updateOrder = async (req, res, next)=>{
     try {
         const { OrderStatus } = req.body;
-        const order = await Order.findByIdAndUpdate(req.params.id, {OrderStatus}, {new: true} );
+        const { id } = req.params;
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            const error = createHttpError(404, "Invalid ID");
+            return next(error);
+        }
+        const order = await Order.findByIdAndUpdate(id, {OrderStatus}, {returnDocument : "after"} );
         if(!order) {
             const error = createHttpError(404, "Order Not Found");
             return next(error);
