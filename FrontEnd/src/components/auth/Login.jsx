@@ -1,6 +1,14 @@
+import { useMutation } from '@tanstack/react-query';
 import { React, useState } from 'react'
+import { login } from "../../https/index"
+import { enqueueSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -12,8 +20,24 @@ const Login = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(formData);
+        loginMutation.mutate(formData);
     }
+
+
+    const loginMutation = useMutation ({
+        mutationFn: (reqData) => login(reqData),
+        onSuccess: (res) => {
+            const { data } = res;
+            console.log(data);
+            const { _id, name, email, phone, role } = data.data;
+            dispatch(setUser({_id, name, email, phone, role}));
+            navigate("/");
+        },
+        onError: (error) =>{
+            const { response } = error;
+            enqueueSnackbar(response.data.message, { variant: "error"});
+        }
+    })
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -39,6 +63,7 @@ const Login = () => {
                 <div className="flex items-center rounded-lg p-5 px-4 bg-[#1f1f1f]">
                     <input type="password"
                         name="password"
+                        autoComplete="current-pasword"
                         value={formData.password}
                         onChange={handleChange}
                         placeholder='Enter Password'
@@ -47,9 +72,19 @@ const Login = () => {
                     /> 
                 </div>
             </div>
-            <button type="submit" className='w-full rounded-lg mt-6 py-3 text-lg bg-yellow-400 text-gray-900 font-bold'>
-                Sign In
-            </button>
+<button
+  type="submit"
+  className="w-full rounded-lg mt-6 py-3 text-lg 
+             font-semibold text-white
+             bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-500
+             shadow-lg shadow-orange-500/20
+             transition-all duration-300
+             hover:shadow-orange-500/40
+             hover:-translate-y-[1px]
+             active:scale-[0.98]"
+>
+  Sign In
+</button>
         </form>
     </div>
   )

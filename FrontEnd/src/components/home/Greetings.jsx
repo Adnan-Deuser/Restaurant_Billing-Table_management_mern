@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Greetings = () => {
+
+  const userData = useSelector((state)=>state.user);
   const [dateTime, setDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -44,20 +47,18 @@ const Greetings = () => {
           transition-all hover:scale-[1.02] hover:shadow-2xl
         ">
 
-        {/* Left: Greeting */}
         <div>
           <h1 className="
               text-3xl font-bold tracking-tight
               text-emerald-400 drop-shadow-md
             ">
-            {getGreeting(dateTime)}, Adnan
+            {getGreeting(dateTime)}, {userData.name || "Test User"}
           </h1>
           <p className="text-sm text-neutral-400 mt-1 tracking-wide">
             Serve with a smile 😁
           </p>
         </div>
 
-        {/* Right: Clock */}
         <div className="text-right">
           <h1 className="
               text-4xl font-bold tracking-wider 

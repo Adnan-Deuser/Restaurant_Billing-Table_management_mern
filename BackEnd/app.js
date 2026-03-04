@@ -3,6 +3,7 @@ const express = require("express");
 const connectDB = require("./config/database")
 const globalErrorHandler = require("./middleware/globalErrorHandler")
 const config = require("./config/config");
+const cors = require("cors")
 const createHttpError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -13,6 +14,10 @@ connectDB();
 //Middlefi
 app.use(express.json());  //it parses incoming requests in json format
 app.use(cookieParser());
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:5173']
+}))
 
 app.get("/", (req,res) =>{
     res.json({message : "Hello From the other Side😤"})

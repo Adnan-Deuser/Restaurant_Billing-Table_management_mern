@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { register } from '../../https';
+import { useMutation } from '@tanstack/react-query';
+import { enqueueSnackbar } from 'notistack';
 
-const Register = () => {
-
+const Register = ({setIsRegister}) => {
 
     const [formData, setFormData] = useState({
         name: "",
@@ -21,8 +23,31 @@ const Register = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(formData);
+        registerMutation.mutate(formData);
     }
+
+    const registerMutation = useMutation ({
+        mutationFn: (reqData) => register(reqData),
+        onSuccess: (res) => {
+            const { data } = res;
+            enqueueSnackbar(data.message, { variant: "success" });
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                password: "",
+                role: ""
+            })
+            setTimeout(() => {
+                setIsRegister(false);
+            }, 1500);
+        },
+        onError: (error) =>{
+            const { response } = error;
+            enqueueSnackbar(response.data.message, { variant: "error"});
+        }
+    })
+
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -104,9 +129,19 @@ const Register = () => {
                 </div>
             </div>
 
-            <button type="submit" className='w-full rounded-lg mt-6 py-3 text-lg bg-yellow-400 text-gray-900 font-bold'>
-                Sign Up
-            </button>
+            <button
+            type="submit"
+            className="w-full rounded-lg mt-6 py-3 text-lg 
+                        font-semibold text-white
+                        bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-500
+                        shadow-lg shadow-orange-500/30
+                        transition-all duration-300
+                        hover:shadow-orange-500/50
+                        hover:-translate-y-[1px]
+                        active:scale-[0.98]"
+            >
+  Sign Up
+</button>
         </form>
     </div>
   )
