@@ -35,7 +35,7 @@ const Header = () => {
                    backdrop-blur-md border-b border-[#111] shadow-lg">
 
       <div onClick={()=> navigate("/")} className="flex items-center gap-3 cursor-pointer">
-        <img src='src/assets/logo.png' className="h-10 w-10 rounded-xl shadow-md" alt="Hotel Logo" />
+        <img src='/logo.png' className="h-10 w-10 rounded-xl shadow-md" alt="Hotel Logo" />
         <h1 className="text-md font-bold text-white drop-shadow-md">Hell's Kitchen</h1>
       </div>
 
