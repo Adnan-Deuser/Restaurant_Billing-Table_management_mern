@@ -14,10 +14,7 @@ connectDB();
 //Middlefi
 app.use(express.json());  //it parses incoming requests in json format
 app.use(cookieParser());
-app.use(cors({
-    credentials: true,
-    origin: ['https://restaurantfrontend-git-main-adnan-deusers-projects.vercel.app','https://restaurantfrontend-gamma.vercel.app','https://restaurantfrontend-jnwz0ej5b-adnan-deusers-projects.vercel.app']
-}))
+app.use(cors());
 
 app.get("/", (req,res) =>{
     res.json({message : "Hello From the other Side😤"})
