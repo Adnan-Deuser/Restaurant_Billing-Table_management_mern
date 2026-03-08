@@ -21,6 +21,16 @@ const Orders = () => {
   if(isError){
     enqueueSnackbar("Something went wrong", {variant:"error"})
   }
+  const orders = resData?.data?.data || [];
+
+  const filteredOrders =
+    status === "all"
+      ? orders
+      : orders.filter((order) =>
+          status === "progress" ? order.orderStatus === "In Progress" :
+          status === "ready" ? order.orderStatus === "Ready" :
+          true // fallback, though only "progress" and "ready" matter
+      );
   return (
     <section className='bg-[#1f1f1f] h-[calc(99vh-4.5rem)] overflow-hidden'>
       
@@ -72,30 +82,23 @@ const Orders = () => {
       Ready
     </button>
 
-    <button
-      onClick={() => setStatus("completed")}
-      className={`relative px-5 py-2 rounded-xl text-sm font-semibold 
-        transition-all duration-300
-        ${status === "completed"
-          ? "bg-gradient-to-r from-purple-400 to-pink-400 text-black shadow-md scale-105"
-          : "text-[#ababab] hover:text-white hover:bg-[#2a2a2a]"
-        }`}
-    >
-      Completed
-    </button>
 
   </div>
 </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-10 py-2 overflow-y-scroll  no-scrollbar pb-28'>
-        {
-        resData?.data.data.length > 0 ? (
-          resData.data.data.map((order) => {
-            return <OrderCard key={order._id} order= {order} />
-          })
-        ) : <p className='col-span-3 text-gray-400'>No Order Available</p>
-      }
-      </div>
+<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-10 py-2 overflow-y-scroll no-scrollbar pb-28'>
+
+  {filteredOrders.length > 0 ? (
+    filteredOrders.map((order) => (
+      <OrderCard key={order._id} order={order} />
+    ))
+  ) : (
+    <p className='col-span-3 text-gray-400'>
+      No Orders Found
+    </p>
+  )}
+
+</div>
 
       <BottomNav />
     </section>
