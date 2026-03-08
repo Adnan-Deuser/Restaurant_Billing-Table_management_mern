@@ -90,12 +90,16 @@ const getUserData = async (req, res, next) => {
 }
 
 
-const logout = async(req, res, next)=>{
-    try {
-        res.clearCookie('accessToken');
-        res.status(200).json({success: true, message: "User Logged Out Success"})
-    } catch (error) {
-        next(error);
-    }
-}
+const logout = async (req, res, next) => {
+  try {
+    res.clearCookie("accessToken", {
+      httpOnly: true,           // cookie not accessible via JS
+      sameSite: "None",          // allows cross-origin requests
+      secure: true               // required for HTTPS (Vercel uses HTTPS)
+    });
+    res.status(200).json({ success: true, message: "User Logged Out Successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {register,login, getUserData, logout}
