@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema({
             required:true
         }
     },
-    OrderStatus : {
+    orderStatus : {
         type: String,
         required:true
     },

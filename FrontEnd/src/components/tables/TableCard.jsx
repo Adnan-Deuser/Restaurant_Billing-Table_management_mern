@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { updateTable } from '../../redux/slices/customerSlice';
 import { getAvatarName } from '../../utils';
 
-const TableCard = ({ name, status, initials, seats }) => {
+const TableCard = ({ id, name, status, initials, seats }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (status === "Booked") return;
-    dispatch(updateTable({ tableNo: name }))
+
+    const table ={ tableId: id, tableNo: name }
+    dispatch(updateTable({table}))
     navigate("/menu");
   }
 
@@ -19,7 +21,7 @@ const TableCard = ({ name, status, initials, seats }) => {
 
   return (
     <div
-      onClick={handleClick}
+      onClick={handleClick} key ={id}
       className={`w-[360px] p-6 rounded-2xl cursor-pointer
       transition-all duration-300 border
       ${isBooked

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { enqueueSnackbar } from "notistack";
 
 const TinyModal = ({ status, payment, onClose }) => {
 
@@ -16,7 +17,6 @@ const TinyModal = ({ status, payment, onClose }) => {
         className="bg-white w-[360px] rounded-2xl shadow-2xl p-6"
       >
 
-        {/* Processing */}
         {status === "processing" && (
           <div className="flex flex-col items-center gap-4 py-6">
             <div className="h-10 w-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
@@ -27,7 +27,6 @@ const TinyModal = ({ status, payment, onClose }) => {
           </div>
         )}
 
-        {/* Success */}
         {status === "success" && payment && (
           <>
             <div className="text-center mb-5">
