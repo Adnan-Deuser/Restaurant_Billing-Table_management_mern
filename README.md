@@ -1,10 +1,3 @@
-## Links - Open in new Tab
-### Backend First
-- Frontend: [https://restaurantfrontend.vercel.app](https://restaurantfrontend-gamma.vercel.app/)  
-- Backend: [https://restaurant-backend.onrender.com](https://restaurant-backend-8lxa.onrender.com/)
-  
-<hr />
-
 <div align="center">
 <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" width="90" height="90" alt="Notion Icon">  <h1 align="center">Restaurant Management System</h1>
   
