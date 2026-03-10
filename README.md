@@ -4,8 +4,12 @@
   <p align="center">
 A modern, responsive restaurant management application built with the MERN stack. It features order management, table tracking, receipt generation, and secure user authentication. <br />
   </p>
-<img width="1920" height="1080" alt="Screenshot 2026-03-08 202117" src="https://github.com/user-attachments/assets/166d5849-f66f-4e9c-afcb-5043c36be58b" />
 
+<img width="1280" height="720" alt="Screenshot 2026-03-10 212923" src="https://github.com/user-attachments/assets/314959a4-5af3-48d9-af8e-eea038febc6f" />
+
+&nbsp;
+
+<img width="1280" height="720" alt="Screenshot 2026-03-10 212859" src="https://github.com/user-attachments/assets/915660c7-70dd-4d53-b63e-03ddcd5e0545" />
 
   <p align="center">
     <br>
